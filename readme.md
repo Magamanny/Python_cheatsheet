@@ -139,7 +139,7 @@ TODO
 TODO
 
 ### logging Library
-
+A built in library that is thread safe and can write log messages to the file.
 ```python
 import logging
 # will create a file and log in it with date time
@@ -147,7 +147,16 @@ logging.basicConfig(filename='example.log',level=logging.INFO , format='%(asctim
 logging.warning('Watch out!')  # will print a message to the console
 logging.info('I told you so')  # will not print anything
 ```
-
+With loggging in the default formate on file and consol.
+```python
+# will create a file and log in it with date time
+logging.basicConfig(level=logging.INFO,handlers=[
+	logging.FileHandler("debug.log"),
+	logging.StreamHandler()
+])
+logging.warning('Watch out!')  # will print a message to the console
+logging.info('I told you so')  # will not print anything
+```
 ## Ram usage
 
 ```python
