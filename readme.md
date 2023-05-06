@@ -196,7 +196,7 @@ t.join() # wait for t to complete here
 print("Done")
 ```
 
-#### Advance Threading
+### Advance Threading
 
 In Python 3.2 they added ThreadPoolExecutor
 
@@ -211,7 +211,14 @@ with concurrent.futures.ThreadPoolExecutor(max_workers = 10) as executor:
         for f in concurrent.futures.as_completed(result):
             print(f.result())
 ```
+### Time of execution
 
+```python
+import time
+start_time = time.time()
+main()
+print("--- %s seconds ---" % (time.time() - start_time))
+```
 ## Multiprocessing
 
 Old ways of doing. Multiprocessing is used for CPU intensive processes.
