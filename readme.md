@@ -184,16 +184,26 @@ CPU bound task(data crunching), multiprocessing is good for this.
 > Note: don't name file is threading.h
 
 ```python
-import threading # in python std lib
+import time
+import threading
+start = time.perf_counter()
 
-def thread_1(name):
-    logging.info("Thread %s: starting", name)
-    r = requests.get(url)
-    logging.info("thread %s, status=%d",name, r.status_code)
-t = threading.Thread(target=func, args=(1,)) # the comma is to make it a tuple
-t.start() # start thread
-t.join() # wait for t to complete here
-print("Done")
+def do_something():
+    print("Sleep 1 second...")
+    time.sleep(1)
+    print("Done Sleeping")
+
+t1 = threading.Thread(target=do_something)
+t2 = threading.Thread(target=do_something)
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+finish = time.perf_counter()
+print(f'Finished in {round(finish-start,2)} Second(s)')
 ```
 
 ### Advance Threading
