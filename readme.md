@@ -205,7 +205,25 @@ t2.join()
 finish = time.perf_counter()
 print(f'Finished in {round(finish-start,2)} Second(s)')
 ```
-
+### Thread Safe (using mutex/lock)
+A thread lock is used in python to make sure that a resource is not access by multiple thread at the same time. It can also be used to protect
+a variable and make the function or variable thread safe.
+```python
+import threading
+lock = threading.Lock()
+def do_something_threadSafe(d):
+	lock.acquire()
+	# use the protected resource
+	lock.release()
+t1 = threading.Thread(target=do_something, args=('TH-2',))
+t2 = threading.Thread(target=do_something, args=('TH-1',))
+# Start
+t1.start()
+t2.start()
+# wait for end
+t1.join()
+t2.join()
+```
 ### Advance Threading
 
 In Python 3.2 they added ThreadPoolExecutor
